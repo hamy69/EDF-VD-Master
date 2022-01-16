@@ -30,7 +30,7 @@ for i = 1:n
         max = p(i);
     end
     
-    while(mod(max,hp)==0 && mod(max,p(i))==0)
+    while(mod(max,hp)~=0 && mod(max,p(i))~=0)
         max = max +1;
     end
     hp = max;
@@ -57,16 +57,16 @@ end
 nj=ceil(nj);
 fprintf("Total Num of Jobs: %d\n",nj);
 
-r = zeros(nj,1);
-d = zeros(nj,1);
-p = zeros(nj,1);
+r(end+(nj-end), :) = 0;
+d(end+(nj-end), :) = 0;
+p(end+(nj-end), :) = 0;
 
 task = zeros(nj,1);
 
-C = zeros(nj, X);
+C(end+(nj-end), :) = 0;
 
-x = zeros(nj,1);
-c = zeros(nj, X);
+x(end+(nj-end), :) = 0;
+c(end+(nj-end), :) = 0;
 
 %fprintf("Reached after redeclaration");
 %fflush(stdout);
@@ -89,11 +89,11 @@ for i = 1:n
             C(n+j+counter, k)=C(i, k);
         end
     end
-    counter = counter + (hp/p(i))-1;	%All the -1's are because of first pre entered job!
+    counter = ceil(counter + (hp/p(i))-1);	%All the -1's are because of first pre entered job!
 end
 
 for i = 1:nj
-    fprintf("Job %d,Task=%d r = %f  d = %f p = %f x = %d\n",i+1,task(i),r(i),d(i),p(i),x(i));
+    fprintf("Job %d,Task=%d r = %f  d = %f p = %f x = %d\n",i,task(i),r(i),d(i),p(i),x(i));
 end
 
 u11=0;
@@ -177,13 +177,13 @@ predict = zeros(nj,1);
 
 for i = 1:nj
     
-    %predict(i)=0;
+    predict(i)=1;
     
-    if(x(i)==2)
+    if(x(i)>1)
         choose = randi([0,1]);
         
         if(choose==1)
-            predict(i)=1;
+            predict(i)=2;
             fprintf("**Task %d choosen for Level 2\n",i);
         end
     end
