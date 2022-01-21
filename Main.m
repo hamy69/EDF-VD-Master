@@ -151,15 +151,10 @@ for i = 1:nj
 			
 		%	else 
 		%	{
-				
-				
 		%		if(choice==0)
 		%			use=((float)rand()/(float)(RAND_MAX))*((float)C[i][j]-(float).7*C[i][j])+(float).7*C[i][j];	//To gen random nos. between .7 to 1.0
-					
 		%		else 
 		%			use=((float)rand()/(float)(RAND_MAX))*((float)C[i][1]-(float).7*C[i][1])+(float).7*C[i][1];	//To gen random nos. between .7 to 1.0
-				
-				
 		%	}
 			c(i,j)=use;
 			fprintf("Level  %d's Realised Value: %f\n",j,c(i,j));
