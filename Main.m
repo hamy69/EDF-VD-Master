@@ -36,7 +36,7 @@ for i = 1:n
     hp = max;
 
     while 1
-        x(i) = input("Criticality : ");
+        x(i) = floor(input("Criticality : "));
         if(x(i)>2)
             fprintf("\n!!Criticality Greater than 2 not accepted. Please try again!\n\n");
         else
